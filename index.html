@@ -200,6 +200,29 @@
                 btn.innerHTML = '🎵'; isPlaying = false;
             }
         }
+        function updateCountdowns() {
+            const targets = [
+                { id: "target-1", date: new Date("2026-05-30T00:00:00") },
+                { id: "target-2", date: new Date("2026-08-08T00:00:00") },
+                { id: "target-3", date: new Date("2026-10-30T00:00:00") }
+            ];
+
+            targets.forEach(item => {
+                const now = new Date();
+                const diff = item.date - now;
+
+                if (diff > 0) {
+                    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    const m = Math.floor((diff / 1000 / 60) % 60);
+                    document.getElementById(item.id).innerText = `${d} gün ${h} saat ${m} dəqiqə qaldı`;
+                } else {
+                    document.getElementById(item.id).innerText = "Bu gün həmin gündür! ❤️";
+                }
+            });
+        }
+        setInterval(updateCountdowns, 60000); // Hər dəqiqə yenilə
+        updateCountdowns();
     </script>
 </body>
 </html>
