@@ -14,6 +14,31 @@
             color: white; border-bottom-left-radius: 50% 20px; border-bottom-right-radius: 50% 20px;
             box-shadow: 0 10px 25px rgba(255, 75, 43, 0.3); position: relative;
         }
+        .initials-logo {
+            font-size: 3.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive, serif;
+        }
+        .initials-logo span {
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        .beating-heart {
+            color: #fff;
+            animation: beat 1.2s infinite ease-in-out;
+            display: inline-block;
+        }
+        @keyframes beat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.25); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
         /* Uçan Ürəklər */
         .heart {
             position: fixed; bottom: -10px; color: rgba(255, 65, 108, 0.4);
@@ -92,12 +117,15 @@
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>Səni Sevirəm! ❤️</h1>
-        <p style="margin-top:15px;">Hər saniyəmiz bir nağıldır...</p>
+<header>
+        <div class="initials-logo">
+            <span>R</span>
+            <div class="beating-heart">🤍</div>
+            <span>D</span>
+        </div>
+        <h1>Səni Sevirəm!🤍</h1>
+        <p>Hər saniyəmiz bir nağıldır...</p>
     </header>
-
     <div class="main-counter">
         <p>Birlikdə keçən zamanımız:</p>
         <h2 id="main-timer">Hesablanır...</h2>
