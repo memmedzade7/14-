@@ -3,154 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SƏNİ SEVİRƏM!</title>
+    <title>R ❤️ D | Bizim Hekayəmiz</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
         body { 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Poppins', sans-serif; 
+            margin: 0; padding: 0; font-family: 'Poppins', sans-serif; 
             background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); 
-            color: white; 
-            text-align: center; 
-            overflow-x: hidden; 
-            min-height: 100vh;
+            color: white; text-align: center; overflow-x: hidden; min-height: 100vh;
         }
 
         /* Ulduzlar */
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: twinkle var(--duration) infinite ease-in-out;
-            z-index: 0;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite ease-in-out; z-index: 0; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
 
-        header { 
-            padding: 60px 20px; 
-            position: relative;
-            z-index: 1;
-        }
+        header { padding: 60px 20px; position: relative; z-index: 1; }
+        .initials-logo { font-family: 'Dancing Script', cursive; font-size: 4.5rem; display: flex; align-items: center; justify-content: center; gap: 15px; text-shadow: 0 0 20px rgba(255,255,255,0.4); }
+        .beating-heart { animation: beat 1.2s infinite; display: inline-block; filter: drop-shadow(0 0 10px white); }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-        .initials-logo {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255,255,255,0.4);
-        }
-
-        .beating-heart {
-            animation: beat 1.2s infinite;
-            display: inline-block;
-            filter: drop-shadow(0 0 10px white);
-        }
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Kartlar - Şüşə Effekti */
+        /* Kartlar */
         .main-counter, .countdown-card, #letter-content {
-            background: rgba(255, 255, 255, 0.08) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            border-radius: 25px;
-            color: white !important;
-            position: relative;
-            z-index: 1;
+            background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 25px; color: white; position: relative; z-index: 1;
         }
-
         .main-counter { margin: -20px auto 30px; width: 85%; max-width: 500px; padding: 30px; }
-        .main-counter h2 { font-size: 2.2rem; color: #ff7eb3 !important; margin: 10px 0; }
+        .main-counter h2 { font-size: 2.2rem; color: #ff7eb3; margin: 10px 0; }
 
         .countdown-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; max-width: 900px; margin: auto; }
-        .countdown-card { padding: 15px; }
-        .countdown-card h4 { color: #ff7eb3 !important; margin: 0; font-size: 0.85rem; text-transform: uppercase; }
-        .timer-val { font-weight: 600; font-size: 0.95rem; margin-top: 5px; color: #fff; }
+        .countdown-card h4 { color: #ff7eb3; margin: 0; font-size: 0.85rem; }
 
+        /* Qalereya və Şəkil üstü yazılar */
         .gallery { padding: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; position: relative; z-index: 1; }
-        .img-container { border-radius: 20px; border: 3px solid rgba(255,255,255,0.2); overflow: hidden; width: 260px; height: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .img-container { 
+            position: relative; border-radius: 20px; border: 3px solid rgba(255,255,255,0.2); 
+            overflow: hidden; width: 280px; height: 360px; cursor: pointer; transition: 0.4s;
+        }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        
+        .overlay-text {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 12, 41, 0.7); display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.5s; font-family: 'Dancing Script', cursive; font-size: 1.8rem; padding: 10px; box-sizing: border-box;
+        }
+        .img-container:hover .overlay-text { opacity: 1; }
+        .img-container:hover img { transform: scale(1.1); filter: blur(2px); }
 
-        /* Uçan Ağ Ürəklər */
-        .heart { position: fixed; bottom: -10px; color: rgba(255, 255, 255, 0.4); font-size: 20px; animation: moveUp 4s linear forwards; z-index: 1000; pointer-events: none; }
-        @keyframes moveUp { to { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+        /* İmza */
+        .footer-signature {
+            margin: 50px 0 30px; font-size: 0.8rem; color: #888; font-style: italic; opacity: 0.6; letter-spacing: 1px;
+        }
 
-        .music-control { position: fixed; bottom: 25px; right: 25px; z-index: 9999; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 22px; border: 1px solid rgba(255,255,255,0.3); }
+        .music-control { position: fixed; bottom: 25px; right: 25px; z-index: 9999; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); }
         #youtube-player { position: absolute; width: 0; height: 0; border: 0; }
-
-        .letter-btn { background: #ff7eb3; color: white; border: none; padding: 15px 40px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-bottom: 50px; position: relative; z-index: 1; box-shadow: 0 5px 15px rgba(255, 126, 179, 0.4); }
-        #letter-content { display: none; max-width: 600px; margin: 0 auto 50px; padding: 30px; text-align: left; line-height: 1.7; }
+        .letter-btn { background: #ff7eb3; color: white; border: none; padding: 15px 40px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-bottom: 30px; position: relative; z-index: 1; }
+        #letter-content { display: none; max-width: 600px; margin: 0 auto 30px; padding: 30px; text-align: left; }
+        .heart-float { position: fixed; bottom: -10px; color: rgba(255, 255, 255, 0.4); font-size: 20px; animation: moveUp 4s linear forwards; z-index: 1000; pointer-events: none; }
+        @keyframes moveUp { to { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="initials-logo">
-            <span>R</span>
-            <div class="beating-heart">🤍</div>
-            <span>D</span>
-        </div>
-        <p style="opacity: 0.8;">Səninlə hər şey bir ulduz qədər parlaq...</p>
+        <div class="initials-logo"><span>R</span><div class="beating-heart">🤍</div><span>D</span></div>
+        <p style="opacity: 0.7;">Səninlə hər saniyə ulduzlar qədər dəyərlidir...</p>
     </header>
 
     <div class="main-counter">
-        <p style="font-size: 0.9rem; opacity: 0.7;">Birlikdə keçən zamanımız:</p>
+        <p style="font-size: 0.8rem; opacity: 0.6;">Birlikdə keçən şirin ömür:</p>
         <h2 id="main-timer">Hesablanır...</h2>
     </div>
 
-    <h3 style="color: #ff7eb3; font-size: 1.2rem; position: relative; z-index: 1;">Xüsusi Tarixlər ✨</h3>
     <div class="countdown-section">
         <div class="countdown-card"><h4>5-ci İldönümü 🌹</h4><div id="target-1" class="timer-val">...</div></div>
         <div class="countdown-card"><h4>Doğum Günün 🎂</h4><div id="target-2" class="timer-val">...</div></div>
-        <div class="countdown-card"><h4>Özəl Gün ❤️</h4><div id="target-3" class="timer-val">...</div></div>
+        <div class="countdown-card"><h4>Özəl Günümüz ❤️</h4><div id="target-3" class="timer-val">...</div></div>
     </div>
 
     <div class="gallery">
-        <div class="img-container"><img src="1.jpg"></div>
-        <div class="img-container"><img src="2.jpg"></div>
-        <div class="img-container"><img src="3.jpg"></div>
+        <div class="img-container">
+            <img src="1.jpg">
+            <div class="overlay-text">İlk Günümüz ✨</div>
+        </div>
+        <div class="img-container">
+            <img src="2.jpg">
+            <div class="overlay-text">Sənin Gülüşün ❤️</div>
+        </div>
+        <div class="img-container">
+            <img src="3.jpg">
+            <div class="overlay-text">Həmişə Birlikdə ∞</div>
+        </div>
     </div>
 
     <button class="letter-btn" onclick="openLetter()">Məktubumuz 💌</button>
     <div id="letter-content">
-        Sevgilim,<br><br>
-        Yaxşə ki,varsan🤍Səni sevirəm!
+        Mənim əzizim D,<br><br>
+        Bu ulduzlu səma altında sənə olan sevgimi ifadə etmək istədim. 30 May 2021-ci ildən bəri həyatımdakı ən parlaq ulduz sənsən. Səninlə keçən hər an bir xəzinədir.<br><br>
+        Yaxşı ki varsan! 🤍
     </div>
+
+    <div class="footer-signature">Yaradıcı: Rəsul</div>
 
     <div class="music-control" onclick="toggleMusic()" id="musicBtn">🎵</div>
     <iframe id="youtube-player" src="https://www.youtube.com/embed/HirFutbbIWg?enablejsapi=1&autoplay=0" allow="autoplay"></iframe>
 
     <script>
-        // Ulduzlar yarat
         function createStars() {
-            const starCount = 120;
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
+            for (let i = 0; i < 120; i++) {
+                const star = document.createElement('div'); star.className = 'star';
                 const size = Math.random() * 2 + 1 + 'px';
-                star.style.width = size;
-                star.style.height = size;
-                star.style.top = Math.random() * 100 + 'vh';
-                star.style.left = Math.random() * 100 + 'vw';
+                star.style.width = size; star.style.height = size;
+                star.style.top = Math.random() * 100 + 'vh'; star.style.left = Math.random() * 100 + 'vw';
                 star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
                 document.body.appendChild(star);
             }
         }
         createStars();
 
-        // Zaman hesabla
         const start = new Date("2021-05-30T00:00:00");
         function updateMain() {
             const now = new Date();
@@ -163,7 +132,6 @@
         }
         setInterval(updateMain, 1000); updateMain();
 
-        // Geri sayım
         function updateCountdowns() {
             const targets = [
                 { id: "target-1", date: new Date("2026-05-30T00:00:00") },
@@ -181,29 +149,19 @@
         }
         setInterval(updateCountdowns, 60000); updateCountdowns();
 
-        // Uçan ağ ürəklər
         setInterval(() => {
-            const heart = document.createElement('div');
-            heart.classList.add('heart'); heart.innerHTML = '🤍';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 4000);
+            const heart = document.createElement('div'); heart.classList.add('heart-float'); heart.innerHTML = '🤍';
+            heart.style.left = Math.random() * 100 + 'vw'; heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart); setTimeout(() => heart.remove(), 4000);
         }, 400);
 
         function openLetter() { document.getElementById("letter-content").style.display = "block"; window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
 
         var isPlaying = false;
         function toggleMusic() {
-            const btn = document.getElementById('musicBtn');
-            const iframe = document.getElementById('youtube-player');
-            if (!isPlaying) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                btn.innerHTML = '🤍'; isPlaying = true;
-            } else {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                btn.innerHTML = '🎵'; isPlaying = false;
-            }
+            const btn = document.getElementById('musicBtn'); const iframe = document.getElementById('youtube-player');
+            if (!isPlaying) { iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*'); btn.innerHTML = '🤍'; isPlaying = true; }
+            else { iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); btn.innerHTML = '🎵'; isPlaying = false; }
         }
     </script>
 </body>
