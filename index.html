@@ -12,6 +12,7 @@
             background: #fffafa;
             color: #4a4a4a;
             text-align: center;
+            overflow-x: hidden;
         }
 
         header {
@@ -21,9 +22,26 @@
             border-bottom-left-radius: 50% 20px;
             border-bottom-right-radius: 50% 20px;
             box-shadow: 0 10px 25px rgba(255, 75, 43, 0.3);
+            position: relative;
         }
 
-        h1 { font-size: 2.5rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        /* Uçan Ürəklər Animasiyası */
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            color: rgba(255, 65, 108, 0.4);
+            font-size: 20px;
+            animation: moveUp 4s linear forwards;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        @keyframes moveUp {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
         /* Əsas Zaman Bölməsi */
         .main-counter {
@@ -35,9 +53,10 @@
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             border: 1px solid #ffe4e1;
+            position: relative;
+            z-index: 2;
         }
 
-        .main-counter p { font-size: 1.2rem; color: #888; margin-bottom: 5px; }
         .main-counter h2 { font-size: 2.8rem; color: #ff416c; margin: 10px 0; }
 
         /* Sevgi Statistikası */
@@ -55,15 +74,12 @@
             border-radius: 20px;
             background: white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
             border-bottom: 4px solid #ff416c;
         }
 
-        .stat-card:hover { transform: translateY(-5px); }
-        .stat-card small { color: #b1b1b1; font-size: 0.9rem; display: block; margin-bottom: 10px; }
         .stat-card span { font-size: 1.8rem; color: #ff4b2b; font-weight: bold; }
 
-        /* Qalereya */
+        /* Qalereya və Hover Effektləri */
         .gallery {
             padding: 50px 20px;
             max-width: 1100px;
@@ -71,44 +87,54 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
         }
 
-        .gallery img {
-            width: 280px;
-            height: 350px;
-            object-fit: cover;
+        .img-container {
+            position: relative;
+            overflow: hidden;
             border-radius: 20px;
             border: 8px solid white;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
             transition: 0.4s;
-        }
-
-        .gallery img:nth-child(even) { transform: rotate(2deg); }
-        .gallery img:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
-
-        /* Məktub Bölməsi */
-        .letter-section {
-            padding: 60px 20px;
-            background: #fff0f3;
-        }
-
-        .letter-btn {
-            background: #ff416c;
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.2rem;
-            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
-            font-weight: bold;
-            transition: 0.3s;
         }
 
-        .letter-btn:hover { background: #ff4b2b; transform: scale(1.05); }
+        .img-container img {
+            width: 280px;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+        }
 
+        .img-container:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 10;
+        }
+
+        .img-container:hover img {
+            filter: brightness(70%);
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.4s;
+            white-space: nowrap;
+        }
+
+        .img-container:hover .overlay-text {
+            opacity: 1;
+        }
+
+        /* Məktub */
         #letter-content {
             display: none;
             max-width: 600px;
@@ -118,106 +144,119 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             line-height: 1.8;
-            font-size: 1.1rem;
-            color: #555;
-            text-align: left;
             border-left: 5px solid #ff416c;
-            position: relative;
+            text-align: left;
         }
 
-        footer {
-            padding: 50px;
-            color: #999;
-            font-size: 0.9rem;
+        .letter-btn {
+            background: #ff416c;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        strong { color: #ff416c; }
+        /* Musiqi Pleyeri (Sağ Aşağı) */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+        }
+
+        footer { padding: 50px; color: #999; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Səni Sevirəm! ❤️</h1>
-        <div style="margin-top:15px; font-size: 1.2rem; opacity: 0.9;">Hər saniyəmiz özəldir...</div>
+        <p style="margin-top:15px;">Hər saniyəmiz bir nağıldır...</p>
     </header>
 
     <div class="main-counter">
-        <p>Birlikdə keçən ömür:</p>
+        <p>Birlikdə keçən şirin ömür:</p>
         <h2 id="main-timer">Yüklənir...</h2>
     </div>
 
     <div class="stats-grid">
-        <div class="stat-card">
-            <small>Cəmi Gün</small>
-            <span id="days-count">...</span>
-        </div>
-        <div class="stat-card">
-            <small>Cəmi Həftə</small>
-            <span id="weeks-count">...</span>
-        </div>
-        <div class="stat-card">
-            <small>Cəmi Ay</small>
-            <span id="months-count">...</span>
-        </div>
+        <div class="stat-card"><small>Cəmi Gün</small><br><span id="days-count">...</span></div>
+        <div class="stat-card"><small>Cəmi Həftə</small><br><span id="weeks-count">...</span></div>
+        <div class="stat-card"><small>Cəmi Ay</small><br><span id="months-count">...</span></div>
     </div>
 
     <div class="gallery">
-        <img src="sekil1.jpg" alt="Xatirə 1">
-        <img src="sekil2.jpg" alt="Xatirə 2">
-        <img src="sekil3.jpg" alt="Xatirə 3">
+        <div class="img-container" style="transform: rotate(-3deg);">
+            <img src="sekil1.jpg" alt="Xatirə">
+            <div class="overlay-text">İlk Günümüz ✨</div>
+        </div>
+        <div class="img-container" style="transform: rotate(3deg);">
+            <img src="sekil2.jpg" alt="Xatirə">
+            <div class="overlay-text">Gülüşün ❤️</div>
+        </div>
+        <div class="img-container" style="transform: rotate(-2deg);">
+            <img src="sekil3.jpg" alt="Xatirə">
+            <div class="overlay-text">Həmişə Birlikdə ∞</div>
+        </div>
     </div>
 
-    <div class="letter-section">
+    <div style="padding: 40px;">
         <button class="letter-btn" onclick="openLetter()">Məktubumuzu Aç 💌</button>
         <div id="letter-content">
             Əzizim,<br><br>
-            Bu kiçik sayt sənə olan sevgimin rəqəmsal bir ifadəsidir. 30 May 2021-ci il tarixindən bəri həyatımı gözəlləşdirdiyin üçün sənə təşəkkür edirəm. Səninlə keçən hər gün, hər həftə və hər ay mənim üçün ən böyük xoşbəxtlikdir.<br><br>
+            Bu kiçik sayt sənə olan sevgimin rəqəmsal bir ifadəsidir. 30 May 2021-ci il tarixindən bəri həyatımı gözəlləşdirdiyin üçün sənə təşəkkür edirəm. Səninlə keçən hər an mənim üçün ən böyük xoşbəxtlikdir.<br><br>
             Yaxşı ki, varsan. 14 Fevralımız mübarək! ❤️
         </div>
     </div>
 
-    <footer>
-        Hazırladı: <strong>RƏSUL MƏMMƏDZADƏ</strong>
-    </footer>
+    <div class="music-player">
+        <iframe width="200" height="100" src="https://www.youtube.com/embed/YOUTUBE_ID_BURA_YAZ?autoplay=1&mute=0" frameborder="0" allow="autoplay"></iframe>
+        <p style="font-size: 10px; background: white; padding: 2px;">Mahnını başlat 🎵</p>
+    </div>
+
+    <footer>Hazırladı: <strong>RƏSUL MƏMMƏDZADƏ</strong></footer>
 
     <script>
-        const start = new Date("2021-05-30T00:00:00");
+        // 1. Ürəklər yaradan funksiya
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+        setInterval(createHeart, 300);
 
+        // 2. Zaman hesablama
+        const start = new Date("2021-05-30T00:00:00");
         function updateClock() {
             const now = new Date();
             const diff = now - start;
-
             const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const totalWeeks = (totalDays / 7).toFixed(1);
-            const totalMonths = (totalDays / 30.44).toFixed(1);
-
+            
             let years = now.getFullYear() - start.getFullYear();
             let months = now.getMonth() - start.getMonth();
             let days = now.getDate() - start.getDate();
-
-            if (days < 0) {
-                months--;
-                days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-            }
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
+            if (days < 0) { months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+            if (months < 0) { years--; months += 12; }
 
             document.getElementById("main-timer").innerText = `${years} il ${months} ay ${days} gün`;
             document.getElementById("days-count").innerText = totalDays;
-            document.getElementById("weeks-count").innerText = totalWeeks;
-            document.getElementById("months-count").innerText = totalMonths;
+            document.getElementById("weeks-count").innerText = (totalDays / 7).toFixed(1);
+            document.getElementById("months-count").innerText = (totalDays / 30.44).toFixed(1);
         }
-
-        function openLetter() {
-            const content = document.getElementById("letter-content");
-            content.style.display = "block";
-            content.scrollIntoView({ behavior: 'smooth' });
-        }
-
         setInterval(updateClock, 1000);
         updateClock();
+
+        function openLetter() {
+            document.getElementById("letter-content").style.display = "block";
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
