@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R ❤️ D | Bizim Hekayəmiz</title>
+    <title>R ❤️ D </title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
@@ -66,28 +66,28 @@
 
     <header>
         <div class="initials-logo"><span>R</span><div class="beating-heart">🤍</div><span>D</span></div>
-        <p style="opacity: 0.7;">Səninlə hər saniyə ulduzlar qədər dəyərlidir...</p>
+        <p style="opacity: 0.7;">Səninlə hər şey bir ulduz qədər parlaq...</p>
     </header>
 
     <div class="main-counter">
-        <p style="font-size: 0.8rem; opacity: 0.6;">Birlikdə keçən şirin ömür:</p>
+        <p style="font-size: 0.8rem; opacity: 0.6;">Birlikdə keçən zamanımız:</p>
         <h2 id="main-timer">Hesablanır...</h2>
     </div>
 
     <div class="countdown-section">
         <div class="countdown-card"><h4>5-ci İldönümü 🌹</h4><div id="target-1" class="timer-val">...</div></div>
-        <div class="countdown-card"><h4>Doğum Günün 🎂</h4><div id="target-2" class="timer-val">...</div></div>
-        <div class="countdown-card"><h4>Özəl Günümüz ❤️</h4><div id="target-3" class="timer-val">...</div></div>
+        <div class="countdown-card"><h4>Doğum Günüm🎂</h4><div id="target-2" class="timer-val">...</div></div>
+        <div class="countdown-card"><h4>Doğum Günün ❤️</h4><div id="target-3" class="timer-val">...</div></div>
     </div>
 
     <div class="gallery">
         <div class="img-container">
             <img src="1.jpg">
-            <div class="overlay-text">İlk Günümüz ✨</div>
+            <div class="overlay-text">İlk universitet günü ✨</div>
         </div>
         <div class="img-container">
             <img src="2.jpg">
-            <div class="overlay-text">Sənin Gülüşün ❤️</div>
+            <div class="overlay-text">Gülüşün ❤️</div>
         </div>
         <div class="img-container">
             <img src="3.jpg">
@@ -97,9 +97,8 @@
 
     <button class="letter-btn" onclick="openLetter()">Məktubumuz 💌</button>
     <div id="letter-content">
-        Mənim əzizim D,<br><br>
-        Bu ulduzlu səma altında sənə olan sevgimi ifadə etmək istədim. 30 May 2021-ci ildən bəri həyatımdakı ən parlaq ulduz sənsən. Səninlə keçən hər an bir xəzinədir.<br><br>
-        Yaxşı ki varsan! 🤍
+        Sevgilim,<br><br>
+       Yaxşı ki,varsan🤍Səni sevirəm!
     </div>
 
     <div class="footer-signature">Yaradıcı: Rəsul</div>
@@ -133,11 +132,12 @@
         setInterval(updateMain, 1000); updateMain();
 
         function updateCountdowns() {
-            const targets = [
-                { id: "target-1", date: new Date("2026-05-30T00:00:00") },
-                { id: "target-2", date: new Date("2026-08-08T00:00:00") },
-                { id: "target-3", date: new Date("2026-10-30T00:00:00") }
-            ];
+           // Kodun sonundakı bu hissəni tap:
+const targets = [
+    { id: "target-1", date: new Date("2026-05-30T00:00:00") }, // İldönümü (30 May)
+    { id: "target-2", date: new Date("2026-08-08T00:00:00") }, // Doğum günü (8 Avqust)
+    { id: "target-3", date: new Date("2026-10-30T00:00:00") }  // Digər özəl gün (30 Oktyabr)
+];
             targets.forEach(item => {
                 const diff = item.date - new Date();
                 if (diff > 0) {
