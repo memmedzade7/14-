@@ -3,140 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Səni Sevirəm!</title>
+    <title>Səni Sevirəm! ❤️</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: #fff5f5;
-            color: #d63384;
+            color: #333;
             text-align: center;
         }
 
         header {
-            padding: 50px 20px;
-            background: #ffdeeb;
+            padding: 60px 20px;
+            background: #e35d5d;
+            color: white;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        h1 { font-size: 2.2rem; margin: 0; }
+        .date-text { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
 
-        /* Sayğac */
-        #timer {
-            font-size: 1.2rem;
-            font-weight: bold;
+        /* Əsas Sayğac */
+        .main-counter {
             background: white;
-            display: inline-block;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.2);
-            margin-top: 20px;
+            margin: -40px auto 30px;
+            width: 80%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            color: #e35d5d;
+        }
+        .main-counter h2 { font-size: 2.5rem; margin: 10px 0; }
+
+        /* Digər Statistikalar */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
         }
 
-        /* Qalereya */
+        .stat-card {
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .days { background-color: #5bbdbf; }
+        .weeks { background-color: #40a1d8; }
+        .months { background-color: #6c757d; }
+
+        .stat-card span { display: block; font-size: 2.5rem; margin-top: 10px; }
+
         .gallery {
+            padding: 40px 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            padding: 40px;
             max-width: 1000px;
             margin: auto;
         }
 
         .gallery img {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
             border-radius: 15px;
-            transition: transform 0.3s;
             border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .gallery img:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        /* Məktub hissəsi */
-        .message-box {
-            padding: 50px 20px;
-            background: #d63384;
+        footer {
+            padding: 40px;
+            background: #333;
             color: white;
+            margin-top: 50px;
         }
-
-        .btn {
-            background: white;
-            color: #d63384;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn:hover { background: #ffe0e0; }
-
-        #secret-message {
-            display: none;
-            margin-top: 20px;
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        footer { padding: 20px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>14 Fevralımız Mübarək! ❤️</h1>
-        <p>Birlikdə keçirdiyimiz hər an bir möcüzədir.</p>
-        <div id="timer">Yüklənir...</div>
+        <div class="date-text">30 May 2021-ci ildən bu yana...</div>
     </header>
 
-    <div class="gallery">
-        <img src="sekil1.jpg" alt="Xatirə 1">
-        <img src="sekil2.jpg" alt="Xatirə 2">
-        <img src="sekil3.jpg" alt="Xatirə 3">
+    <div class="main-counter">
+        <p>Birlikdə keçirdiyimiz zaman:</p>
+        <h2 id="main-timer">4 il 8 ay 14 gün</h2>
+        <p style="font-size: 0.8rem; color: #999;">Time Zone: Asia/Baku</p>
     </div>
 
-    <div class="message-box">
-        <button class="btn" onclick="showMessage()">Məktubu Aç 💌</button>
-        <div id="secret-message">
-            "Səninlə keçən hər gün mənə dünyanın ən gözəl hədiyyəsidir. <br>
-            Yaxşı ki, varsan, yaxşı ki, mənimləsən. <br>
-            Səni çox sevirəm!"
+    <div class="stats-grid">
+        <div class="stat-card days">
+            30 May 2021-ci ildən neçə gün keçdi
+            <span id="days-count">1720 gün</span>
+        </div>
+        <div class="stat-card weeks">
+            30 May 2021-ci ildən neçə həftədir
+            <span id="weeks-count">245.7 həftə</span>
+        </div>
+        <div class="stat-card months">
+            30 May 2021-ci ildən neçə ay keçdi
+            <span id="months-count">56.5 ay</span>
         </div>
     </div>
 
-    <footer>Hazırladı: [Sənin Adın]</footer>
+    <div class="gallery">
+        <img src="sekil1.jpg" alt="Biz">
+        <img src="sekil2.jpg" alt="Xatirə">
+        <img src="sekil3.jpg" alt="Sevgi">
+    </div>
+
+    <footer>
+        Hazırladı: <strong>RƏSUL MƏMMƏDZADƏ</strong>
+    </footer>
 
     <script>
-        // Tanışlıq tarixi (İl, Ay (0-dan başlayır), Gün)
-        const startDate = new Date("2023-05-20"); 
+        // Tanışlıq tarixi
+        const start = new Date("2021-05-30T00:00:00");
 
-        function updateTimer() {
+        function updateClock() {
             const now = new Date();
-            const diff = now - startDate;
+            const diff = now - start;
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const mins = Math.floor((diff / 1000 / 60) % 60);
-            const secs = Math.floor((diff / 1000) % 60);
+            // Gün hesabı
+            const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const totalWeeks = (totalDays / 7).toFixed(1);
+            const totalMonths = (totalDays / 30.44).toFixed(1);
 
-            document.getElementById("timer").innerHTML = 
-                `${days} gün, ${hours} saat, ${mins} dəqiqə, ${secs} saniyədir ki, sənə aşiqəm.`;
+            // İl, Ay, Gün hesabı
+            let years = now.getFullYear() - start.getFullYear();
+            let months = now.getMonth() - start.getMonth();
+            let days = now.getDate() - start.getDate();
+
+            if (days < 0) {
+                months--;
+                days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            document.getElementById("main-timer").innerText = `${years} il ${months} ay ${days} gün`;
+            document.getElementById("days-count").innerText = `${totalDays} gün`;
+            document.getElementById("weeks-count").innerText = `${totalWeeks} həftə`;
+            document.getElementById("months-count").innerText = `${totalMonths} ay`;
         }
 
-        setInterval(updateTimer, 1000);
-
-        function showMessage() {
-            const msg = document.getElementById("secret-message");
-            msg.style.display = "block";
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>
